@@ -1,0 +1,11 @@
+#These are generated files so everything shuold be ignored
+*.drl
+*.gbl
+*.gbs
+*.gbo
+*.gm1
+*.gtl
+*.gts
+*.gtp
+*.gto
+*.zip
