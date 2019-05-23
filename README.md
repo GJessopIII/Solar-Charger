@@ -1,2 +1,2 @@
 # Solar-Charger
-Documentation is located at solar-charger.rtfd.io
+Documentation is located [here](solar-charger.rtfd.io)
