@@ -3,22 +3,44 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Welcome to Solar-Charger's documentation!
+Welcome!
 =========================================
+This project was proposed to the Power Electronics class at Walla Walla University (ENGR 460). Since we had been studying DC-DC buck/boost
+converters our professor Dr. Rob Frohne gave us a cheap 2.5W solar array and tasked us with drawing maximum power from the array using Maximum Power Point Tracking (MPPT).
+
+With that goal in mind 
+.. toctree::
+   :maxdepth: 2
+   introduction.rst
+   derivation.rst
+
+
 
 Contents:
 
-:math:`\int_3^2 f(x)dx`
+This is an example of code::
 
-.. toctree::
-   :maxdepth: 2
+    import math
+    print 'import done'
 
+here is some inline math :math:`\int_3^2 f(x)dx`
+
+Guide
+=====
+
+Adding images is already really interesting apparently if I add a newline
+it makes a new paragraph.
+
+
+.. image:: 1.jpg
+   :width: 200px
+   :align: center
+   :height: 100px
+   :alt: alternate text
 
 
 Indices and tables
 ==================
 
 * :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`
 
