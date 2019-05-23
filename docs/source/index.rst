@@ -5,25 +5,22 @@
 
 Welcome!
 =========================================
-This project was proposed to the Power Electronics class at Walla Walla University (ENGR 460). Since we had been studying DC-DC buck/boost
-converters our professor Dr. Rob Frohne gave us a cheap 2.5W solar array and tasked us with drawing maximum power from the array using Maximum Power Point Tracking (MPPT).
+This project was proposed to the Power Electronics class at Walla Walla University (ENGR 460). Since we had been studying DC-DC buck/boost converters our professor Dr. Rob Frohne gave us a cheap 2.5W solar array and tasked us with drawing maximum power from the array using Maximum Power Point Tracking (MPPT). 
 
-With that goal in mind we made sure to figure it all out and do a wunderful doj
-
+Contents:
+=========
 
 .. toctree::
    :maxdepth: 2
-   mppt.rst
-   circuit.rst
+   
+   mppt
+   circuit
 
-
-
-Contents:
 
 This is an example of code::
 
-    import math
-    print 'import done'
+   import math
+   print 'import done'
 
 here is some inline math :math:`\int_3^2 f(x)dx`
 
