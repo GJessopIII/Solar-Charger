@@ -13,8 +13,8 @@ With that goal in mind we made sure to figure it all out and do a wunderful doj
 
 .. toctree::
    :maxdepth: 2
-   introduction.rst
-   derivation.rst
+   mppt.rst
+   circuit.rst
 
 
 
