@@ -11,3 +11,22 @@ How Buck Converters are "DC Transformers"
 ----------------------------------------------
 Here I am going to show mathematically how a Buck Converter can be used as a "DC transformer".
 
+.. figure:: Buck.svg
+   :width: 400px
+   :align: center
+   :height: 200px
+   :alt: Buck Converter
+   :figclass: align center
+
+   Buck Converter (*Wikipedia*, 2019)
+
+.. figure:: Buck_Waves.png
+   :width: 400px
+   :align: center
+   :height: 250px
+   :alt: Waveforms
+   :figclass: align center
+
+   Waveforms of a Buck converter (*Wikipedia*, 2019)
+
+There are great things with the maths and stuff
