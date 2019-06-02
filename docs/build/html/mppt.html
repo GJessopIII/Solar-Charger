@@ -35,6 +35,7 @@
   <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Troubleshooting" href="troubleshooting.html" />
     <link rel="prev" title="Welcome!" href="index.html" /> 
 </head>
 
@@ -84,7 +85,12 @@
             
             
               <ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Maximum Power Point Tracking (MPPT)</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Maximum Power Point Tracking (MPPT)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#how-buck-converters-are-dc-transformers">How Buck Converters are “DC Transformers”</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="troubleshooting.html">Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="circuit.html">Schematic and PCB Design</a></li>
 </ul>
 
             
@@ -151,9 +157,15 @@
             
   <div class="section" id="maximum-power-point-tracking-mppt">
 <h1>Maximum Power Point Tracking (MPPT)<a class="headerlink" href="#maximum-power-point-tracking-mppt" title="Permalink to this headline">¶</a></h1>
-<p>Maximum Power Point Tracking (MPPT) uses the well know fact that in order to
-extract the maximum power from a source you must match the impedance of the
-load with the impedance of the source.</p>
+<p>Maximum Power Point Tracking (MPPT) uses the well know fact that in order to extract the maximum power from a source you must match the impedance of the load with the impedance of the source.
+However, the I-V characteristics of a solar panel make this task not so easy to accomplish. When looking at the I-V characteristics of a solar panel (Instert Picture) you can see that there is a point on the curve at which the Voltage and Current are both at their maximum.
+Since power in an electronic circuit is related by <span class="math notranslate nohighlight">\(P=V\cdot I\)</span> you can see how having V at a maximum and I at a maximum creates the maximum amount of power.
+Unfortunately this only occurs at a certain load resistance. You also dicern from the I-V characteristic curve of a solar panel that if you were to deviate just slightly from that ideal resistance there would be a very large drop in the amount of power that is being produced.
+Usually however you are not so lucky with your load resistance as it can be changing constantly. What would work great is if there was a way to have a resistor that could be changed in order to constantly match this ideal resistance. If this were an AC circuit it could be done very easily with a transformer as a resistance seen across a transformer is described as <span class="math notranslate nohighlight">\(R_p = N^2 \cdot R_s\)</span> where <span class="math notranslate nohighlight">\(R_p\)</span> is the resistor on the primary side, <span class="math notranslate nohighlight">\(R_s\)</span> is the resistor on the secondary side, and N is the turns ratio of the transformer. Unfortunately this is a DC circit and not an AC circuit.</p>
+<div class="section" id="how-buck-converters-are-dc-transformers">
+<h2>How Buck Converters are “DC Transformers”<a class="headerlink" href="#how-buck-converters-are-dc-transformers" title="Permalink to this headline">¶</a></h2>
+<p>Here I am going to show mathematically how a Buck Converter can be used as a “DC transformer”.</p>
+</div>
 </div>
 
 
@@ -163,6 +175,8 @@ load with the impedance of the source.</p>
           <footer>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="troubleshooting.html" class="btn btn-neutral float-right" title="Troubleshooting" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="index.html" class="btn btn-neutral float-left" title="Welcome!" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>

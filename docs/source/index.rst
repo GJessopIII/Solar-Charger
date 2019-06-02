@@ -15,7 +15,7 @@ Contents:
    
    mppt
    circuit
-
+   troubleshooting
 
 This is an example of code::
 
