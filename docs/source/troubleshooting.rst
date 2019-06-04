@@ -47,7 +47,7 @@ I think a good first test is to completely bypass the protection circuitry for n
 It turns out that this problem found a few errors in the schematic. First the USB output was actually flipped from what it was supposed to be. The pinout for the schematic symbol matches a male connector and not a female connector.
 This was fixed by flipping the connections in the schematic so GND is connected to :math:`V_o` and 5v is connected to GND. Eventually this should have a better fix of finding the appropriate footprint as the one currently used is for a male connector pinout. 
 
-Second, it turns out that the connections to the MOSFETs were just plain in the wrong place. Everything about the footprint and schmatic symbol fit perfectly I just connected it wrong.
+Second, the connections to the MOSFETs were just plain in the wrong place. Everything about the footprint and schmatic symbol fit perfectly I just connected it wrong. This has been ratified as of Rev1.1.
 
 All of tThe problems were eventually ratified in the schematic and PCB layout as of Rev1.1. The symbol for the MOSFETs was also modified to improve connection clarity to prevent future mishaps.
 
