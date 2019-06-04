@@ -5,7 +5,7 @@ Problem 1 (Fixed)
 -----------------
 Initially I found out that the biggest problem I faced was because I had missed one zone priority allocation. This caused the ground plane to bleed into the zones that I had used for large tracks that connected to the IC's.
 
-.. figure:: PCB_bad.png
+.. figure:: Pictures/PCB_bad.png
         :width: 500px
         :align: center
         :height: 250px
@@ -17,7 +17,7 @@ Initially I found out that the biggest problem I faced was because I had missed 
 This was remedied by using a razor blade in order to cut the traces to disconnect the ground plane where it shouldn't have been connected.
 
 
-.. figure:: Trace_Cut.jpg
+.. figure:: Pictures/Trace_Cut.jpg
         :width: 500px
         :align: center
         :height: 250px
@@ -28,7 +28,7 @@ This was remedied by using a razor blade in order to cut the traces to disconnec
 
 Then a simple change to the zone allocation in the PCB files design fixes the problem in all future revisions. 
 
-.. figure:: PCB_good.png
+.. figure:: Pictures/PCB_good.png
         :width: 500px
         :align: center
         :height: 250px

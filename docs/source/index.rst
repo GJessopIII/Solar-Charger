@@ -5,7 +5,7 @@
 
 Welcome!
 =========================================
-This project was proposed to the Power Electronics class at Walla Walla University (ENGR 460). Since we had been studying DC-DC buck/boost converters our professor Dr. Rob Frohne gave us a cheap 2.5W solar array and tasked us with drawing maximum power from the array using Maximum Power Point Tracking (MPPT). All github files are located at `Repository <https://github.com/cosgais/Solar-Charger>`_. 
+This project was proposed to the Power Electronics class at Walla Walla University (ENGR 460). Since we had been studying DC-DC buck/boost converters our professor Dr. Rob Frohne gave us a cheap 2.5W solar array and tasked us with drawing maximum power from the array using Maximum Power Point Tracking (MPPT). All files are located at on the `Repository <https://github.com/cosgais/Solar-Charger>`_. 
 
 Contents:
 =========
@@ -31,7 +31,7 @@ Adding images is already really interesting apparently if I add a newline
 it makes a new paragraph.
 
 
-.. image:: 1.jpg
+.. image:: Pictures/1.jpg
    :width: 200px
    :align: center
    :height: 100px

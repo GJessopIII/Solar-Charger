@@ -18,7 +18,7 @@ Now we can see how this duty cycle :math:`D` is actually analogous to the turns 
 Starting the analysis by identifying two different states that the buck converter can be in. The first being when the switch is on and the second is when the switch is off. For this analysis we are going to treat the MOSFET as just a simple switch. We must also make the assumption that the circuit is in steady state, the inductor current is always positive, the capacitor is very large, and the switching period is :math:`T`. This implies that the switch is closed for :math:`DT` and the switch is open for :math:`(1-D)T` time. 
 
 
-.. figure:: Buck.svg
+.. figure:: Pictures/Buck.svg
    :width: 400px
    :align: center
    :height: 200px
@@ -95,7 +95,7 @@ Which when you solve for :math:`V_o` we obtain
 
 which means that the buck converter outputs a voltage that is less than or equal to our equal voltage based on what our duty cycle is. This is amazing because this means that our duty cycle :math:`D` can be treated as a DC "Turns Ratio". Now let's explore if just like an AC tranformer the impedance on one side of the transformer is related by the square of the turns ratio. 
 
-.. figure:: Buck_Waves.png
+.. figure:: Pictures/Buck_Waves.png
    :width: 400px
    :align: center
    :height: 250px
