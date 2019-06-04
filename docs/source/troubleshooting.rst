@@ -37,6 +37,18 @@ Then a simple change to the zone allocation in the PCB files design fixes the pr
 
         Ground plane fixed
 
-Problem 2 (In Progress)
+Problem 2 (Fixed)
 -----------------------
-When taking the charger out into the sun and turning on the boost converter there seems to be a solid 5V on the USB output. However, if I add any load to the output the circuit is unable to charge anything. Also, putting an ammeter in series with the battery and the solar charging circuit shows that there is very little current that is flowing. These things lead me to believe that the battery is somehow no connected to the circuit where it is supposed to be. This could be caused by just a misconnection of the circuit or maybe the lipo overcharge and overdischarge circuit is working too well. I think a good first test is to completely bypass the protection circuitry for now by connecting the negative terminal of the batter directly to ground instead of running it through the protection circuitry. 
+When taking the charger out into the sun and turning on the boost converter there seems to be a solid 5V on the USB output. However, if I add any load to the output the circuit is unable to charge anything. 
+Also, putting an ammeter in series with the battery and the solar charging circuit shows that there is very little current that is flowing. These things lead me to believe that the battery is somehow not connected to the circuit where it is supposed to be. 
+This could be caused by just a misconnection of the circuit or maybe the lipo overcharge and overdischarge circuit is working too well. 
+I think a good first test is to completely bypass the protection circuitry for now by connecting the negative terminal of the batter directly to ground instead of running it through the protection circuitry. Completely cutting out the lipo protection circuitry solved the issue for now.
+
+It turns out that this problem found a few errors in the schematic. First the USB output was actually flipped from what it was supposed to be. The pinout for the schematic symbol matches a male connector and not a female connector.
+This was fixed by flipping the connections in the schematic so GND is connected to :math:`V_o` and 5v is connected to GND. Eventually this should have a better fix of finding the appropriate footprint as the one currently used is for a male connector pinout. 
+
+Second, it turns out that the connections to the MOSFETs were just plain in the wrong place. Everything about the footprint and schmatic symbol fit perfectly I just connected it wrong.
+
+All of tThe problems were eventually ratified in the schematic and PCB layout as of Rev1.1. The symbol for the MOSFETs was also modified to improve connection clarity to prevent future mishaps.
+
+

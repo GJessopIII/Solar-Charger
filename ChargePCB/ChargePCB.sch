@@ -7,7 +7,7 @@ encoding utf-8
 Sheet 1 1
 Title "Solar Charge"
 Date "2019-05-17"
-Rev "1.0"
+Rev "1.1"
 Comp "Walla Walla University"
 Comment1 ""
 Comment2 ""
