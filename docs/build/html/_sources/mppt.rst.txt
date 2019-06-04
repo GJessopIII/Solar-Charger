@@ -9,7 +9,14 @@ Usually however you are not so lucky with your load resistance as it can be chan
 
 How Buck Converters are "DC Transformers"
 ----------------------------------------------
-Here I am going to show mathematically how a Buck Converter can be used as a "DC transformer".
+Transformers for DC circuits don't really exist. However, there is a very clever way of taking a DC source turning into AC and then back into DC all in one concise circuit. These circuits are called switching mode DC-to-DC converters. There exists many circuit topologies that are all based around the same concept of taking a DC signal converting it to AC then back to DC. Some of these circuit topologies are SEPIC, Cuk, Buck, Boost, and Buck-Boost. In this document we are only going to focus on Buck converters. This is because the output voltage of the solar panel is around 18V which will then need to be converted to 4.2V to charge the lipo battery. 
+
+The Buck converter circuit topology is shown below. In all switching mode DC converters there is always a switch which will switch on and off at a given frequency :math:`f_s` with a given duty cycle represented by :math:`D`.
+Usually, this switch is implemented by the use of MOSFET transistor where the gate is connected to a control signal that provides a squarewave at :math:`f_s` with the desired duty cycle. 
+Now we can see how this duty cycle :math:`D` is actually analogous to the turns ratio of an AC circuit.
+
+Starting the analysis by identifying two different states that the buck converter can be in. The first being when the switch is on and the second is when the switch is off. For this analysis we are going to treat the MOSFET as just a simple switch. 
+
 
 .. figure:: Buck.svg
    :width: 400px

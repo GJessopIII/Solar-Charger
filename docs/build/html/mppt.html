@@ -13,40 +13,40 @@
 
   
   
+  
+  
 
   
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
 
-  
-  
     
 
   
-
-  
-  
-    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
-  
-
-  
-
-  
-    <link rel="top" title="Solar-Charger 0.0.1 documentation" href="index.html"/>
-        <link rel="next" title="Schematic and PCB Design" href="circuit.html"/>
-        <link rel="prev" title="Welcome!" href="index.html"/> 
-
-  
-  <script src="_static/js/modernizr.min.js"></script>
-
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Schematic and PCB Design" href="circuit.html" />
+    <link rel="prev" title="Welcome!" href="index.html" /> 
 </head>
 
-<body class="wy-body-for-nav" role="document">
+<body class="wy-body-for-nav">
 
+   
   <div class="wy-grid-for-nav">
-
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
-        <div class="wy-side-nav-search">
+        <div class="wy-side-nav-search" >
           
 
           
@@ -81,9 +81,12 @@
           
             
             
-                <ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="">Maximum Power Point Tracking (MPPT)</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#how-buck-converters-are-dc-transformers">How Buck Converters are &#8220;DC Transformers&#8221;</a></li>
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Maximum Power Point Tracking (MPPT)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#how-buck-converters-are-dc-transformers">How Buck Converters are “DC Transformers”</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="circuit.html">Schematic and PCB Design</a></li>
@@ -99,34 +102,54 @@
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
 
       
-      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
-        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-        <a href="index.html">Solar-Charger</a>
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Solar-Charger</a>
+        
       </nav>
 
 
-      
       <div class="wy-nav-content">
+        
         <div class="rst-content">
+        
           
+
+
+
+
+
+
+
+
+
+
 
 
 
 
 
 <div role="navigation" aria-label="breadcrumbs navigation">
+
   <ul class="wy-breadcrumbs">
-    <li><a href="index.html">Docs</a> &raquo;</li>
-      
-    <li>Maximum Power Point Tracking (MPPT)</li>
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>Maximum Power Point Tracking (MPPT)</li>
+    
+    
       <li class="wy-breadcrumbs-aside">
         
-          
-            <a href="_sources/mppt.txt" rel="nofollow"> View page source</a>
+            
+            <a href="_sources/mppt.rst.txt" rel="nofollow"> View page source</a>
           
         
       </li>
+    
   </ul>
+
+  
   <hr/>
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
@@ -136,12 +159,16 @@
 <h1>Maximum Power Point Tracking (MPPT)<a class="headerlink" href="#maximum-power-point-tracking-mppt" title="Permalink to this headline">¶</a></h1>
 <p>Maximum Power Point Tracking (MPPT) uses the well know fact that in order to extract the maximum power from a source you must match the impedance of the load with the impedance of the source.
 However, the I-V characteristics of a solar panel make this task not so easy to accomplish. When looking at the I-V characteristics of a solar panel (Instert Picture) you can see that there is a point on the curve at which the Voltage and Current are both at their maximum.
-Since power in an electronic circuit is related by <span class="math">\(P=V\cdot I\)</span> you can see how having V at a maximum and I at a maximum creates the maximum amount of power.
+Since power in an electronic circuit is related by <span class="math notranslate nohighlight">\(P=V\cdot I\)</span> you can see how having V at a maximum and I at a maximum creates the maximum amount of power.
 Unfortunately this only occurs at a certain load resistance. You also dicern from the I-V characteristic curve of a solar panel that if you were to deviate just slightly from that ideal resistance there would be a very large drop in the amount of power that is being produced.
-Usually however you are not so lucky with your load resistance as it can be changing constantly. What would work great is if there was a way to have a resistor that could be changed in order to constantly match this ideal resistance. If this were an AC circuit it could be done very easily with a transformer as a resistance seen across a transformer is described as <span class="math">\(R_p = N^2 \cdot R_s\)</span> where <span class="math">\(R_p\)</span> is the resistor on the primary side, <span class="math">\(R_s\)</span> is the resistor on the secondary side, and N is the turns ratio of the transformer. Unfortunately this is a DC circit and not an AC circuit.</p>
+Usually however you are not so lucky with your load resistance as it can be changing constantly. What would work great is if there was a way to have a resistor that could be changed in order to constantly match this ideal resistance. If this were an AC circuit it could be done very easily with a transformer as a resistance seen across a transformer is described as <span class="math notranslate nohighlight">\(R_p = N^2 \cdot R_s\)</span> where <span class="math notranslate nohighlight">\(R_p\)</span> is the resistor on the primary side, <span class="math notranslate nohighlight">\(R_s\)</span> is the resistor on the secondary side, and N is the turns ratio of the transformer. Unfortunately this is a DC circit and not an AC circuit.</p>
 <div class="section" id="how-buck-converters-are-dc-transformers">
-<h2>How Buck Converters are &#8220;DC Transformers&#8221;<a class="headerlink" href="#how-buck-converters-are-dc-transformers" title="Permalink to this headline">¶</a></h2>
-<p>Here I am going to show mathematically how a Buck Converter can be used as a &#8220;DC transformer&#8221;.</p>
+<h2>How Buck Converters are “DC Transformers”<a class="headerlink" href="#how-buck-converters-are-dc-transformers" title="Permalink to this headline">¶</a></h2>
+<p>Transformers for DC circuits don’t really exist. However, there is a very clever way of taking a DC source turning into AC and then back into DC all in one concise circuit. These circuits are called switching mode DC-to-DC converters. There exists many circuit topologies that are all based around the same concept of taking a DC signal converting it to AC then back to DC. Some of these circuit topologies are SEPIC, Cuk, Buck, Boost, and Buck-Boost. In this document we are only going to focus on Buck converters. This is because the output voltage of the solar panel is around 18V which will then need to be converted to 4.2V to charge the lipo battery.</p>
+<p>The Buck converter circuit topology is shown below. In all switching mode DC converters there is always a switch which will switch on and off at a given frequency <span class="math notranslate nohighlight">\(f_s\)</span> with a given duty cycle represented by <span class="math notranslate nohighlight">\(D\)</span>.
+Usually, this switch is implemented by the use of MOSFET transistor where the gate is connected to a control signal that provides a squarewave at <span class="math notranslate nohighlight">\(f_s\)</span> with the desired duty cycle.
+Now we can see how this duty cycle <span class="math notranslate nohighlight">\(D\)</span> is actually analogous to the turns ratio of an AC circuit.</p>
+<p>Starting the analysis by identifying two different states that the buck converter can be in. The first being when the switch is on and the second is when the switch is off. For this analysis we are going to treat the MOSFET as just a simple switch.</p>
 <div class="align center figure align-center" id="id1">
 <a class="reference internal image-reference" href="_images/Buck.svg"><img alt="Buck Converter" height="200px" src="_images/Buck.svg" width="400px" /></a>
 <p class="caption"><span class="caption-text">Buck Converter (<em>Wikipedia</em>, 2019)</span></p>
@@ -156,15 +183,16 @@ Usually however you are not so lucky with your load resistance as it can be chan
 
 
            </div>
+           
           </div>
           <footer>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="circuit.html" class="btn btn-neutral float-right" title="Schematic and PCB Design" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="circuit.html" class="btn btn-neutral float-right" title="Schematic and PCB Design" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="index.html" class="btn btn-neutral" title="Welcome!" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="index.html" class="btn btn-neutral float-left" title="Welcome!" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -173,11 +201,11 @@ Usually however you are not so lucky with your load resistance as it can be chan
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2019, Jacob Neal.
+        &copy; Copyright 2019, Jacob Neal
 
     </p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
 
@@ -190,36 +218,15 @@ Usually however you are not so lucky with your load resistance as it can be chan
   
 
 
-  
-
-    <script type="text/javascript">
-        var DOCUMENTATION_OPTIONS = {
-            URL_ROOT:'./',
-            VERSION:'0.0.1',
-            COLLAPSE_INDEX:false,
-            FILE_SUFFIX:'.html',
-            HAS_SOURCE:  true
-        };
-    </script>
-      <script type="text/javascript" src="_static/jquery.js"></script>
-      <script type="text/javascript" src="_static/underscore.js"></script>
-      <script type="text/javascript" src="_static/doctools.js"></script>
-      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-
-  
-
-  
-  
-    <script type="text/javascript" src="_static/js/theme.js"></script>
-  
-
-  
-  
   <script type="text/javascript">
       jQuery(function () {
-          SphinxRtdTheme.StickyNav.enable();
+          SphinxRtdTheme.Navigation.enable(true);
       });
   </script>
+
+  
+  
+    
    
 
 </body>
