@@ -153,7 +153,11 @@
             
   <div class="section" id="welcome">
 <h1>Welcome!<a class="headerlink" href="#welcome" title="Permalink to this headline">¶</a></h1>
-<p>This project was proposed to the Power Electronics class at Walla Walla University (ENGR 460). Since we had been studying DC-DC buck/boost converters our professor Dr. Rob Frohne gave us a cheap 2.5W solar array and tasked us with drawing maximum power from the array using Maximum Power Point Tracking (MPPT). All github files are located at <a class="reference external" href="https://github.com/cosgais/Solar-Charger">Repository</a>.</p>
+<p>This project was proposed to the Power Electronics class at Walla Walla University (ENGR 460). Since we had been studying DC-DC buck/boost converters our professor Dr. Rob Frohne gave us a cheap 2.5W solar array and tasked us with drawing maximum power from the array using Maximum Power Point Tracking (MPPT). All files referenced for this project are located at on the <a class="reference external" href="https://github.com/cosgais/Solar-Charger">Repository</a>.</p>
+</div>
+<div class="section" id="specifications">
+<h1>Specifications<a class="headerlink" href="#specifications" title="Permalink to this headline">¶</a></h1>
+<p>Some specifications that where established was that it must use MPPT tracking and it must charge a phone. How this was accomplished was interpreted in different ways. For me I used MPPT to charge a battery which then was sent through a boost converter to then charge my phone. For others they chose to use an arduino to measure the values and attempt to implement the MPPT themselves with an arduino. If you are unsure what MPPT tracking is see the section on it in the table of contents below. My design was based on the principles explained in the MPPT section however, since there already existed IC’s out there that would do the functions I needed I just understood how the IC worked and did not implement MPPT myself.</p>
 </div>
 <div class="section" id="contents">
 <h1>Contents:<a class="headerlink" href="#contents" title="Permalink to this headline">¶</a></h1>
@@ -161,9 +165,16 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="mppt.html">Maximum Power Point Tracking (MPPT)</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="mppt.html#how-buck-converters-are-dc-transformers">How Buck Converters are “DC Transformers”</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mppt.html#dc-transformer-impedance-relationship">DC “Transformer” Impedance Relationship</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="circuit.html">Schematic and PCB Design</a></li>
+<li class="toctree-l1"><a class="reference internal" href="circuit.html">Schematic and PCB Design</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="circuit.html#mppt-charging-circuit">MPPT Charging Circuit</a></li>
+<li class="toctree-l2"><a class="reference internal" href="circuit.html#schematic-and-pcb">Schematic and PCB</a></li>
+<li class="toctree-l2"><a class="reference internal" href="circuit.html#bom">BOM</a></li>
+<li class="toctree-l2"><a class="reference internal" href="circuit.html#simulation-files">Simulation Files</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="troubleshooting.html">Troubleshooting</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="troubleshooting.html#problem-1-fixed">Problem 1 (Fixed)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="troubleshooting.html#problem-2-fixed">Problem 2 (Fixed)</a></li>

@@ -86,7 +86,12 @@
             
               <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Maximum Power Point Tracking (MPPT)</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#how-buck-converters-are-dc-transformers">How Buck Converters are “DC Transformers”</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#how-buck-converters-are-dc-transformers">How Buck Converters are “DC Transformers”</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#closed-switch-analysis">Closed Switch Analysis</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#open-switch-analysis">Open Switch Analysis</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#dc-transformer-impedance-relationship">DC “Transformer” Impedance Relationship</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="circuit.html">Schematic and PCB Design</a></li>
@@ -157,9 +162,13 @@
             
   <div class="section" id="maximum-power-point-tracking-mppt">
 <h1>Maximum Power Point Tracking (MPPT)<a class="headerlink" href="#maximum-power-point-tracking-mppt" title="Permalink to this headline">¶</a></h1>
-<p>Maximum Power Point Tracking (MPPT) uses the well know fact that in order to extract the maximum power from a source you must match the impedance of the load with the impedance of the source.
-However, the I-V characteristics of a solar panel make this task not so easy to accomplish. When looking at the I-V characteristics of a solar panel (Instert Picture) you can see that there is a point on the curve at which the Voltage and Current are both at their maximum.
-Since power in an electronic circuit is related by <span class="math notranslate nohighlight">\(P=V\cdot I\)</span> you can see how having V at a maximum and I at a maximum creates the maximum amount of power.
+<p>Maximum Power Point Tracking (MPPT) uses the well know fact that in order to extract the maximum power from a source you must find of the load resistance that will extract maximum amount of power. This resistance value will make the voltage and current being drawn from the solar panel be at their maximum.
+However, the I-V characteristics of a solar panel make this task not so easy to accomplish. When looking at the I-V characteristics of a solar panel, you can see that there is a point on the curve at which the Voltage and Current are both at their maximum.</p>
+<div class="align center figure align-center" id="id1">
+<a class="reference internal image-reference" href="_images/solarcurve.jpg"><img alt="Solar IV curve" src="_images/solarcurve.jpg" style="width: 400px; height: 400px;" /></a>
+<p class="caption"><span class="caption-text">Solar Cell I-V curve</span></p>
+</div>
+<p>Since power in an electronic circuit is related by <span class="math notranslate nohighlight">\(P=V\cdot I\)</span> you can see how having V at a maximum and I at a maximum creates the maximum amount of power.
 Unfortunately this only occurs at a certain load resistance. You also dicern from the I-V characteristic curve of a solar panel that if you were to deviate just slightly from that ideal resistance there would be a very large drop in the amount of power that is being produced.
 Usually however you are not so lucky with your load resistance as it can be changing constantly. What would work great is if there was a way to have a resistor that could be changed in order to constantly match this ideal resistance. If this were an AC circuit it could be done very easily with a transformer as a resistance seen across a transformer is described as <span class="math notranslate nohighlight">\(R_p = N^2 \cdot R_s\)</span> where <span class="math notranslate nohighlight">\(R_p\)</span> is the resistor on the primary side, <span class="math notranslate nohighlight">\(R_s\)</span> is the resistor on the secondary side, and N is the turns ratio of the transformer. Unfortunately this is a DC circit and not an AC circuit.</p>
 <div class="section" id="how-buck-converters-are-dc-transformers">
@@ -168,16 +177,64 @@ Usually however you are not so lucky with your load resistance as it can be chan
 <p>The Buck converter circuit topology is shown below. In all switching mode DC converters there is always a switch which will switch on and off at a given frequency <span class="math notranslate nohighlight">\(f_s\)</span> with a given duty cycle represented by <span class="math notranslate nohighlight">\(D\)</span>.
 Usually, this switch is implemented by the use of MOSFET transistor where the gate is connected to a control signal that provides a squarewave at <span class="math notranslate nohighlight">\(f_s\)</span> with the desired duty cycle.
 Now we can see how this duty cycle <span class="math notranslate nohighlight">\(D\)</span> is actually analogous to the turns ratio of an AC circuit.</p>
-<p>Starting the analysis by identifying two different states that the buck converter can be in. The first being when the switch is on and the second is when the switch is off. For this analysis we are going to treat the MOSFET as just a simple switch.</p>
-<div class="align center figure align-center" id="id1">
+<p>Starting the analysis by identifying two different states that the buck converter can be in. The first being when the switch is on and the second is when the switch is off. For this analysis we are going to treat the MOSFET as just a simple switch. We must also make the assumption that the circuit is in steady state, the inductor current is always positive, the capacitor is very large, and the switching period is <span class="math notranslate nohighlight">\(T\)</span>. This implies that the switch is closed for <span class="math notranslate nohighlight">\(DT\)</span> and the switch is open for <span class="math notranslate nohighlight">\((1-D)T\)</span> time.</p>
+<div class="align center figure align-center" id="id2">
 <a class="reference internal image-reference" href="_images/Buck.svg"><img alt="Buck Converter" height="200px" src="_images/Buck.svg" width="400px" /></a>
 <p class="caption"><span class="caption-text">Buck Converter (<em>Wikipedia</em>, 2019)</span></p>
 </div>
-<div class="align center figure align-center" id="id2">
+<div class="section" id="closed-switch-analysis">
+<h3>Closed Switch Analysis<a class="headerlink" href="#closed-switch-analysis" title="Permalink to this headline">¶</a></h3>
+<p>When the switch is closed the diode is reverse-biased and the equivalent circuit can be seen represented by the On-State in the figure above. Starting with the analysis of this circuit we can see that the
+voltage across the inductor can be represented by</p>
+<div class="math notranslate nohighlight">
+\[v_L = V_s - V_o = L\frac{di_L}{dt}\]</div>
+<p>where <span class="math notranslate nohighlight">\(V_s\)</span> and <span class="math notranslate nohighlight">\(V_o\)</span> are the source and output voltage respectively. Rearraging a little bit we obtain</p>
+<div class="math notranslate nohighlight">
+\[\frac{di_L}{dt} = \frac{\Delta i_L}{\Delta t} = \frac{\Delta i_L}{DT} = \frac{V_s-V_o}{L}\]</div>
+<p>where <span class="math notranslate nohighlight">\(\Delta i_L = I_{max}-I_{min}\)</span> where <span class="math notranslate nohighlight">\(I_{max}\)</span> and <span class="math notranslate nohighlight">\(I_{min}\)</span> are defined in the graph below. Rearranging a little bit, we now have an expression for current when the switch is closed</p>
+<div class="math notranslate nohighlight">
+\[(\Delta i_L)_{closed} = (\frac{V_s-V_o}{L})DT\]</div>
+<p>since we assumed that the derivative of the current is a positive constant. This can be observed in the graph below by the rising slope of the current.</p>
+</div>
+<div class="section" id="open-switch-analysis">
+<h3>Open Switch Analysis<a class="headerlink" href="#open-switch-analysis" title="Permalink to this headline">¶</a></h3>
+<p>When the switch is open the diode is no longer reverse-biased and the equivalent circuit can be seen represented by the Off-State in the figure above. Starting again with analyzing the voltage across the inductor we obtain the following relationship.</p>
+<div class="math notranslate nohighlight">
+\[v_L = - V_o = L\frac{di_L}{dt}\]</div>
+<p>Rearranging</p>
+<div class="math notranslate nohighlight">
+\[\frac{di_L}{dt} = \frac{-V_o}{L}\]</div>
+<p>Now instead of the derivative of current in the inductor being positive constant it is negative constant, which again imples the expression</p>
+<div class="math notranslate nohighlight">
+\[\frac{\Delta i_L}{(1-D)T} = \frac{-V_o}{L}\]</div>
+<p>which when rearranged gives us the current through the inductor when the switch is open.</p>
+<div class="math notranslate nohighlight">
+\[(\Delta i_L)_{open} = (\frac{-V_o}{L})(1-D)T\]</div>
+<p>Looking closely at the figure given below you can see that the amount that the current rises while the switch is closed is the same amount that the current falls when the switch is open. Therefore we can write</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}(\Delta i_L)_{open} + (\Delta i_L)_{closed} = 0 \\
+\therefore \\
+(\frac{-V_o}{L})(1-D)T + (\frac{V_s-V_o}{L})DT = 0\end{split}\]</div>
+<p>Which when you solve for <span class="math notranslate nohighlight">\(V_o\)</span> we obtain</p>
+<div class="math notranslate nohighlight">
+\[\boxed{V_o = DV_s}\]</div>
+<p>which means that the buck converter outputs a voltage that is less than or equal to our equal voltage based on what our duty cycle is. This is amazing because this means that our duty cycle <span class="math notranslate nohighlight">\(D\)</span> can be treated as a DC “Turns Ratio”. Now let’s explore if just like an AC tranformer the impedance on one side of the transformer is related by the square of the turns ratio.</p>
+<div class="align center figure align-center" id="id3">
 <a class="reference internal image-reference" href="_images/Buck_Waves.png"><img alt="Waveforms" src="_images/Buck_Waves.png" style="width: 400px; height: 250px;" /></a>
 <p class="caption"><span class="caption-text">Waveforms of a Buck converter (<em>Wikipedia</em>, 2019)</span></p>
 </div>
-<p>There are great things with the maths and stuff</p>
+</div>
+</div>
+<div class="section" id="dc-transformer-impedance-relationship">
+<h2>DC “Transformer” Impedance Relationship<a class="headerlink" href="#dc-transformer-impedance-relationship" title="Permalink to this headline">¶</a></h2>
+<p>In order to explore this we need to first assume that our buck converter is 100% effiecient. Which at first seems like a bad assumption but remember that we aren’t using resistors at all in our circuit so the power dissapation is going to ideally be zero. Also if you were to build one of these circuits you would find that real effieciencies of this circuit can be 90%-100% therefore making this assumption fine. So using the equations that we derived earlier and Ohm’s law we are able to find how a resistance on one side of the converter would look from the other side. Starting off by putting a load resistor on the circuit which is represented by the box on the far right in the buck circuit figure above. This load resistance will be represented by <span class="math notranslate nohighlight">\(R_L\)</span> and the input resistance seen by the source will be represented by <span class="math notranslate nohighlight">\(R_{in}\)</span>. Starting off the derivation with <span class="math notranslate nohighlight">\(P_{in}=P_{out}\)</span> and remembering that <span class="math notranslate nohighlight">\(V_o = DV_s\)</span> we derive</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\frac{V_s^2}{R_{in}} = \frac{V_o^2}{R_{L}}
+\\\implies
+\frac{V_s^2}{R_{in}} = \frac{V_s^2D^2}{R_L}
+\\\implies
+\boxed{R_{in}D^2 = R_L}\end{split}\]</div>
+<p>This is an amazing result because we can now use a buck converter to change what resistance the voltage source sees just by changing our duty cycle. This is extremely helpful for our solar panel as we can use a Buck converter to make the resistance that the solar panel sees exactly the value it should be in order to extract maximum power from it.</p>
 </div>
 </div>
 

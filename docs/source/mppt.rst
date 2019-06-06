@@ -1,8 +1,18 @@
 Maximum Power Point Tracking (MPPT)
 ===================================
 
-Maximum Power Point Tracking (MPPT) uses the well know fact that in order to extract the maximum power from a source you must match the impedance of the load with the impedance of the source. 
-However, the I-V characteristics of a solar panel make this task not so easy to accomplish. When looking at the I-V characteristics of a solar panel (Instert Picture) you can see that there is a point on the curve at which the Voltage and Current are both at their maximum. 
+Maximum Power Point Tracking (MPPT) uses the well know fact that in order to extract the maximum power from a source you must find of the load resistance that will extract maximum amount of power. This resistance value will make the voltage and current being drawn from the solar panel be at their maximum.
+However, the I-V characteristics of a solar panel make this task not so easy to accomplish. When looking at the I-V characteristics of a solar panel, you can see that there is a point on the curve at which the Voltage and Current are both at their maximum. 
+
+.. figure:: Pictures/solarcurve.jpg
+   :width: 400px
+   :align: center
+   :height: 400px
+   :alt: Solar IV curve
+   :figclass: align center
+
+   Solar Cell I-V curve
+
 Since power in an electronic circuit is related by :math:`P=V\cdot I` you can see how having V at a maximum and I at a maximum creates the maximum amount of power. 
 Unfortunately this only occurs at a certain load resistance. You also dicern from the I-V characteristic curve of a solar panel that if you were to deviate just slightly from that ideal resistance there would be a very large drop in the amount of power that is being produced. 
 Usually however you are not so lucky with your load resistance as it can be changing constantly. What would work great is if there was a way to have a resistor that could be changed in order to constantly match this ideal resistance. If this were an AC circuit it could be done very easily with a transformer as a resistance seen across a transformer is described as :math:`R_p = N^2 \cdot R_s` where :math:`R_p` is the resistor on the primary side, :math:`R_s` is the resistor on the secondary side, and N is the turns ratio of the transformer. Unfortunately this is a DC circit and not an AC circuit.  
@@ -43,7 +53,7 @@ where :math:`V_s` and :math:`V_o` are the source and output voltage respectively
 
    \frac{di_L}{dt} = \frac{\Delta i_L}{\Delta t} = \frac{\Delta i_L}{DT} = \frac{V_s-V_o}{L}
 
-We now have an expression for current when the switch is closed 
+where :math:`\Delta i_L = I_{max}-I_{min}` where :math:`I_{max}` and :math:`I_{min}` are defined in the graph below. Rearranging a little bit, we now have an expression for current when the switch is closed 
 
 .. math::
    
@@ -117,4 +127,4 @@ In order to explore this we need to first assume that our buck converter is 100%
    \\\implies
    \boxed{R_{in}D^2 = R_L}
 
-This is an amazing result because we can now used a buck converter to change what the voltage source sees just by changing our duty cycle. This is extremely helpful for our solar panel as we can make the resistance that the solar panel sees exactly the value it should be in order to extract maximum power from it.
+This is an amazing result because we can now use a buck converter to change what resistance the voltage source sees just by changing our duty cycle. This is extremely helpful for our solar panel as we can use a Buck converter to make the resistance that the solar panel sees exactly the value it should be in order to extract maximum power from it.
