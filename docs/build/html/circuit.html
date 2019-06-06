@@ -87,11 +87,12 @@
               <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="mppt.html">Maximum Power Point Tracking (MPPT)</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Schematic and PCB Design</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#mppt-charging-circuit">MPPT Charging Circuit</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#results">Results</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#design-files">Design Files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#mppt-charging-circuit">MPPT Charging Circuit</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#boost-converter">Boost Converter</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="#results">Results</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#design-files">Design Files</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#schematic-and-pcb">Schematic and PCB</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#bom">BOM</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#simulation-files">Simulation Files</a></li>
@@ -172,14 +173,24 @@
 <p>In this circuit there is a MPPT charge controller that charges the attached 1S Lipo Battery(3.2V &#64; 0% to 4.2V &#64; 100%) which is then boosted to 5V to charge anything attached to the USB output.</p>
 <div class="section" id="mppt-charging-circuit">
 <h2>MPPT Charging Circuit<a class="headerlink" href="#mppt-charging-circuit" title="Permalink to this headline">¶</a></h2>
-<p>Many IC’s exist out there that are able to do MPPT tracking for small solar cells like the 2.5W panel we are using. In order to simplify the design of the circuit I chose an existing IC that would do MPPT for me. Researching existing IC’s I found that the best IC for what I need is the LTC3652. The LTC3652 is a readily avaliable IC on digikey and is made by Linear Technologies. There do exist chinese clones of this chip however they were not as readily avaliable and so my design was based around the LTC3652 instead. <a class="reference download internal" download="" href="_downloads/edb21a26adda79c161cc70bd87cb623b/LT3652.pdf"><code class="xref download docutils literal notranslate"><span class="pre">pdf</span></code></a></p>
+<p>Many IC’s exist out there that are able to do MPPT tracking for small solar cells like the 2.5W panel we are using. In order to simplify the design of the circuit I chose an existing IC that would do MPPT for me. Researching existing IC’s I found that the best IC for what I need is the LTC3652. The LTC3652 is a readily avaliable IC on digikey and is made by Linear Technologies. There do exist chinese clones of this chip however they were not as readily avaliable and so my design was based around the LTC3652 instead. <a class="reference download internal" download="" href="_downloads/edb21a26adda79c161cc70bd87cb623b/LT3652.pdf"><code class="xref download docutils literal notranslate"><span class="pre">Datasheet</span></code></a></p>
+<p>Design of the components that supported the LT3652 was accomplished through close investigation of the datasheet and what was recommended by Linear Technologies. Once values were found for these components it was simulated in order to see if it had the desired response.</p>
+</div>
+<div class="section" id="boost-converter">
+<h2>Boost Converter<a class="headerlink" href="#boost-converter" title="Permalink to this headline">¶</a></h2>
+<p>Once we have the battery charging we now need a boost converter in order to output the desired 5V from the 3.6V battery voltage. This was an easy decision thanks to digikey’s organized database of boost converters. Specifications that the boost converter must fulfill are an input that can handle 3.6V and an output of 5V that can handle up to 2A. Eventually, I found the RT4812 made by Richtek which has all of the necessary specifications. Just as before I also considered chinese alternatives however found the shipping took too long for the timeframe that was required. <a class="reference download internal" download="" href="_downloads/77071bf7f126ba6ca58a7e66142aa7d4/RT4812.pdf"><code class="xref download docutils literal notranslate"><span class="pre">Datasheet</span></code></a>
+Unfortunately this IC was not made by Linear Technologies which meant that there is not an existing simulation of this circuit causing design to be a little more arduous. Luckily, this IC had much supporting components and many of then are common across all IC application circuits such as bypass capacitors meaning that these values were very easy to obtain since they are in the datasheet. The RT4812 did also require a large inductor and capacitor as do all boost converters, which again has recommended values in the datasheet making design much easier. One thing that was necessary to design was to find the values for the resistors in the feedback network that give the desired 5V output. Using the provided equations</p>
+<div class="math notranslate nohighlight">
+\[R_1 = R_2(\frac{V_{out}}{V_{FB}}-1)\]</div>
+<p>where <span class="math notranslate nohighlight">\(V_{FB} = 500mV\)</span> and <span class="math notranslate nohighlight">\(V_{out} = 5V\)</span>. Choosing <span class="math notranslate nohighlight">\(R_2 = 200k \Omega\)</span> we can easily find that <span class="math notranslate nohighlight">\(R_1 = 1.8 M\Omega\)</span>. Which is the last portion of design for this IC.</p>
+</div>
+</div>
 <div class="section" id="results">
-<h3>Results<a class="headerlink" href="#results" title="Permalink to this headline">¶</a></h3>
+<h1>Results<a class="headerlink" href="#results" title="Permalink to this headline">¶</a></h1>
 </div>
 <div class="section" id="design-files">
-<h3>Design Files<a class="headerlink" href="#design-files" title="Permalink to this headline">¶</a></h3>
-</div>
-</div>
+<h1>Design Files<a class="headerlink" href="#design-files" title="Permalink to this headline">¶</a></h1>
+<p>I would recommend cloning the <a class="reference external" href="https://github.com/cosgais/Solar-Charger">repository</a> and then installing <a class="reference external" href="http://www.kicad-pcb.org/">KICAD</a> and <a class="reference external" href="https://www.analog.com/en/design-center/design-tools-and-calculators/ltspice-simulator.html">LTSpice</a> in order to properly view all of the design files.</p>
 <div class="section" id="schematic-and-pcb">
 <h2>Schematic and PCB<a class="headerlink" href="#schematic-and-pcb" title="Permalink to this headline">¶</a></h2>
 <p>In order to avoid the risk of a picture being outdated I am just going to have a link to the repository where the schematic and PCB files are located <a class="reference external" href="https://github.com/cosgais/Solar-Charger/tree/master/ChargePCB">here</a>. However, I would recommend cloning the repository and opening the .pro in KICAD.
