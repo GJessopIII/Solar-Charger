@@ -38,6 +38,19 @@ where :math:`V_{FB} = 500mV` and :math:`V_{out} = 5V`. Choosing :math:`R_2 = 200
 
 Results
 =======
+Running tests on the solar charger circuit, once everything was working, I started by first measuring the efficiency of the boost converter to verify its operation. Results are tabulated below
+
++------------+-------------+----------+
+|Measurement |        Input|     Ouput|
++============+=============+==========+
+|Current     |      0.587 A|    0.43 A|
++------------+-------------+----------+
+|Voltage     |      4.064 V|    4.99 V|
++------------+-------------+----------+
+|Power       |      2.385 W|    2.15 W|
++------------+-------------+----------+
+
+which yields an efficiency of :math:`\eta = \frac{P_{out}}{P_{in}} = \frac{2.15}{2.385} = \boxed{89\%}`.
 
 
 Design Files

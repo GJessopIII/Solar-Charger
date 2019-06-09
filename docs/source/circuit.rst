@@ -33,11 +33,40 @@ Unfortunately this IC was not made by Linear Technologies which meant that there
 
 where :math:`V_{FB} = 500mV` and :math:`V_{out} = 5V`. Choosing :math:`R_2 = 200k \Omega` we can easily find that :math:`R_1 = 1.8 M\Omega`. Which is the last portion of design for this IC.  
 
+Lipo Charge Protection
+----------------------
 
-
+Built into the LT3652 is overcharge protection. However, the boost converter that converts the 3.6 V to 5V does not have overdischarge protection. It is very unhealthy for a lipo battery to discharge below 3.0 V as it will cause permanent damage that may not be recovered from. This was accomplished by use of a seperate IC the S-8261, which required two N channel MOSFETS which was accomplished by a dual package DMG6968UDM. When the lipo battery would get down to a dangerous level of around 3.0V the MOSFETs would disengage and disconnect the battery from the shared ground causing the battery to longer be connected to the boost converter.   
 
 Results
 =======
+Running tests on the solar charger circuit, once everything was working, I started by first measuring the efficiency of the boost converter to verify its operation. Results are tabulated below
+
++------------+-------------+----------+
+|Measurement |        Input|     Ouput|
++============+=============+==========+
+|Current     |      0.587 A|    0.43 A|
++------------+-------------+----------+
+|Voltage     |      4.064 V|    4.99 V|
++------------+-------------+----------+
+|Power       |      2.385 W|    2.15 W|
++------------+-------------+----------+
+
+which yields an efficiency of :math:`\eta = \frac{P_{out}}{P_{in}} = \frac{2.15}{2.385} = \boxed{89\%}`. This verifies that the boost converter is indeed operating at acceptable efficiency. 
+
+Next was to find the efficiency of the solar charger as well as the amount of power it draws from the solar panel. 
+
++------------+----------------------+-----------------+
+|Measurement |Input(direct sunlight)|Ouput(to battery)|
++============+======================+=================+
+|Current     |               0.103 A           0.171 A|
++------------+----------------------+-----------------+
+|Voltage     |                  10 V|           4.20 V|
++------------+----------------------+-----------------+
+|Power       |                1.03 W|          0.714 W|
++------------+----------------------+-----------------+
+
+which yields an efficiency of :math:`\eta = \frac{P_{out}}{P_{in}} = \frac{0.714}{1.03} = \boxed{69\%}`. This efficiecny does seem a little low and does have some concerns. However, I believe this can be fixed by increasing the size of the traces as well as double checking to make sure that no components are causing unnecessary power loss by being too small or otherwise.  
 
 
 Design Files
