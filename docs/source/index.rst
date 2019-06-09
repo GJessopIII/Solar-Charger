@@ -24,29 +24,4 @@ Contents:
    circuit
    troubleshooting
 
-This is an example of code::
-
-   import math
-   print 'import done'
-
-here is some inline math :math:`\int_3^2 f(x)dx`
-
-Guide
-=====
-
-Adding images is already really interesting apparently if I add a newline
-it makes a new paragraph.
-
-
-.. image:: Pictures/1.jpg
-   :width: 200px
-   :align: center
-   :height: 100px
-   :alt: alternate text
-
-
-Indices and tables
-==================
-
-* :ref:`genindex`
 

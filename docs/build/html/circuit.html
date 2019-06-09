@@ -89,6 +89,7 @@
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Schematic and PCB Design</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#mppt-charging-circuit">MPPT Charging Circuit</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#boost-converter">Boost Converter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#lipo-charge-protection">Lipo Charge Protection</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="#results">Results</a></li>
@@ -184,6 +185,10 @@ Unfortunately this IC was not made by Linear Technologies which meant that there
 \[R_1 = R_2(\frac{V_{out}}{V_{FB}}-1)\]</div>
 <p>where <span class="math notranslate nohighlight">\(V_{FB} = 500mV\)</span> and <span class="math notranslate nohighlight">\(V_{out} = 5V\)</span>. Choosing <span class="math notranslate nohighlight">\(R_2 = 200k \Omega\)</span> we can easily find that <span class="math notranslate nohighlight">\(R_1 = 1.8 M\Omega\)</span>. Which is the last portion of design for this IC.</p>
 </div>
+<div class="section" id="lipo-charge-protection">
+<h2>Lipo Charge Protection<a class="headerlink" href="#lipo-charge-protection" title="Permalink to this headline">¶</a></h2>
+<p>Built into the LT3652 is overcharge protection. However, the boost converter that converts the 3.6 V to 5V does not have overdischarge protection. It is very unhealthy for a lipo battery to discharge below 3.0 V as it will cause permanent damage that may not be recovered from. This was accomplished by use of a seperate IC the S-8261, which required two N channel MOSFETS which was accomplished by a dual package DMG6968UDM. When the lipo battery would get down to a dangerous level of around 3.0V the MOSFETs would disengage and disconnect the battery from the shared ground causing the battery to longer be connected to the boost converter.</p>
+</div>
 </div>
 <div class="section" id="results">
 <h1>Results<a class="headerlink" href="#results" title="Permalink to this headline">¶</a></h1>
@@ -215,7 +220,35 @@ Unfortunately this IC was not made by Linear Technologies which meant that there
 </tr>
 </tbody>
 </table>
-<p>which yields an efficiency of <span class="math notranslate nohighlight">\(\eta = \frac{P_{out}}{P_{in}} = \frac{2.15}{2.385} = \boxed{89\%}\)</span>.</p>
+<p>which yields an efficiency of <span class="math notranslate nohighlight">\(\eta = \frac{P_{out}}{P_{in}} = \frac{2.15}{2.385} = \boxed{89\%}\)</span>. This verifies that the boost converter is indeed operating at acceptable efficiency.</p>
+<p>Next was to find the efficiency of the solar charger as well as the amount of power it draws from the solar panel.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="24%" />
+<col width="43%" />
+<col width="33%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Measurement</th>
+<th class="head">Input(direct sunlight)</th>
+<th class="head">Ouput(to battery)</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>Current</td>
+<td colspan="2">0.103 A           0.171 A</td>
+</tr>
+<tr class="row-odd"><td>Voltage</td>
+<td>10 V</td>
+<td>4.20 V</td>
+</tr>
+<tr class="row-even"><td>Power</td>
+<td>1.03 W</td>
+<td>0.714 W</td>
+</tr>
+</tbody>
+</table>
+<p>which yields an efficiency of <span class="math notranslate nohighlight">\(\eta = \frac{P_{out}}{P_{in}} = \frac{0.714}{1.03} = \boxed{69\%}\)</span>. This efficiency does seem a little low and does have some concerns. However, I believe this can be fixed by increasing the size of the traces as well as double checking to make sure that no components are causing unnecessary power loss by being too small or otherwise.</p>
 </div>
 <div class="section" id="design-files">
 <h1>Design Files<a class="headerlink" href="#design-files" title="Permalink to this headline">¶</a></h1>
