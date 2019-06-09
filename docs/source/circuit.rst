@@ -66,7 +66,7 @@ Next was to find the efficiency of the solar charger as well as the amount of po
 |Power       |                1.03 W|          0.714 W|
 +------------+----------------------+-----------------+
 
-which yields an efficiency of :math:`\eta = \frac{P_{out}}{P_{in}} = \frac{0.714}{1.03} = \boxed{69\%}`. This efficiecny does seem a little low and does have some concerns. However, I believe this can be fixed by increasing the size of the traces as well as double checking to make sure that no components are causing unnecessary power loss by being too small or otherwise.  
+which yields an efficiency of :math:`\eta = \frac{P_{out}}{P_{in}} = \frac{0.714}{1.03} = \boxed{69\%}`. This efficiency does seem a little low and does have some concerns. However, I believe this can be fixed by increasing the size of the traces as well as double checking to make sure that no components are causing unnecessary power loss by being too small or otherwise.  
 
 
 Design Files
